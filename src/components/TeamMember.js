@@ -7,9 +7,9 @@ function TeamMember(props) {
 
     return (
         <div className="container teammate">
-            <h2>{details.name}</h2>
-            <p>{details.email}</p>
-            <p>{details.role}</p>
+            <h2>Name: {details.name}</h2>
+            <p>Email: {details.email}</p>
+            <p>Role: {details.role}</p>
         </div>
     )
 }

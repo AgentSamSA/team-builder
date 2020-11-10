@@ -13,11 +13,9 @@ function App() {
       <Form teamMembers={teamMembers} setTeamMembers={setTeamMembers} />
 
       {
-        teamMembers.map(teamMember => {
-          let id = 0;
-          id = id + 1;
+        teamMembers.map((teamMember, index) => {
           return (
-            <TeamMember key={id} details={teamMember} />
+            <TeamMember key={index} details={teamMember} />
           )
         })
       }
