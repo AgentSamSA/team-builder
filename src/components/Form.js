@@ -45,9 +45,9 @@ function Form(props) {
                     <input
                         type="text"
                         name="name"
-                        value={formValues}
+                        value={formValues.name}
                         onChange={onChange}
-                        placeholder="type your team member name"
+                        placeholder="team member name"
                         required
                     >
                     </input>
@@ -57,16 +57,16 @@ function Form(props) {
                     <input
                         type="email"
                         name="email"
-                        value={formValues}
+                        value={formValues.email}
                         onChange={onChange}
-                        placeholder="type your team member email"
+                        placeholder="team member email"
                         required
                     >
                     </input>
                 </label>
 
                 <label>Role:
-                    <select name="role" value={formValues} onChange={onChange} required>
+                    <select name="role" value={formValues.role} onChange={onChange} required>
                         <option value="">-- Select a Role --</option>
                         <option value="Saboteur">Saboteur</option>
                         <option value="Rearguard">Rearguard</option>
