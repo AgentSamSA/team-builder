@@ -1,28 +1,29 @@
 import React, { useState } from "react";
 
+const initialFormValues = {
+    name: "",
+    email: "",
+    role: "",
+}
+
 function Form(props) {
     const { teamMembers, setTeamMembers } = props;
-    const initialFormValues = {
-        name: "",
-        email: "",
-        role: "",
-    }
 
     const [formValues, setFormValues] = useState(initialFormValues);
 
-    const onChange = (inputName, inputValue, event) => {
-        inputName = event.target.name;
-        inputValue = event.target.value;
+    const updateForm = (inputName, inputValue) => {
         setFormValues({
             ...formValues,
             [inputName]: inputValue,
-        }
-        );
+        });
     }
 
-    const onSubmit = (event) => {
-        event.preventDefault();
+    const onChange = (event) => {
+        const { name, value } = event.target;
+        updateForm(name, value);
+    }
 
+    const submitForm = () => {
         const newTeamMember = {
             name: formValues.name.trim(),
             email: formValues.email.trim(),
@@ -32,10 +33,15 @@ function Form(props) {
         setFormValues(initialFormValues);
     }
 
+    const onSubmit = (event) => {
+        event.preventDefault();
+        submitForm();
+    }
+
     return (
-        <form onSubmit={onSubmit}>
-            <div className="form-inputs">
-                <label>Name
+        <form className="form container" onSubmit={onSubmit}>
+            <div className="form-group inputs">
+                <label>Name:
                     <input
                         type="text"
                         name="name"
@@ -47,7 +53,7 @@ function Form(props) {
                     </input>
                 </label>
 
-                <label>Email
+                <label>Email:
                     <input
                         type="email"
                         name="email"
@@ -59,19 +65,21 @@ function Form(props) {
                     </input>
                 </label>
 
-                <label>Role
+                <label>Role:
                     <select name="role" value={formValues} onChange={onChange} required>
                         <option value="">-- Select a Role --</option>
                         <option value="Saboteur">Saboteur</option>
                         <option value="Rearguard">Rearguard</option>
-                        <option value="Pointman">PointMan</option>
+                        <option value="Pointman">Pointman</option>
                         <option value="Medic">Medic</option>
                         <option value="Breacher">Breacher</option>
                     </select>
                 </label>
             </div>
+            <div className="submit">
+                <button>Submit</button>
+            </div>
         </form>
-
     )
 }
 
