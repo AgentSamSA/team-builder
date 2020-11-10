@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const initialFormValues = {
     name: "",
@@ -7,7 +7,7 @@ const initialFormValues = {
 }
 
 function Form(props) {
-    const { teamMembers, setTeamMembers } = props;
+    const { teamMembers, setTeamMembers, memberToEdit } = props;
 
     const [formValues, setFormValues] = useState(initialFormValues);
 
@@ -37,6 +37,14 @@ function Form(props) {
         event.preventDefault();
         submitForm();
     }
+
+    useEffect(() => {
+        setFormValues({
+            name: memberToEdit.name,
+            email: memberToEdit.email,
+            role: memberToEdit.role,
+        });
+    }, [memberToEdit]);
 
     return (
         <form className="form container" onSubmit={onSubmit}>
