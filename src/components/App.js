@@ -10,18 +10,19 @@ function App() {
     <div>
       <h1>Add a Team Member</h1>
 
-      <Form />
+      <Form teamMembers={teamMembers} setTeamMembers={setTeamMembers} />
 
       {
         teamMembers.map(teamMember => {
+          let id = 0;
+          id = id + 1;
           return (
-            <TeamMember details={teamMember} />
-          );
+            <TeamMember key={id} details={teamMember} />
+          )
         })
       }
     </div>
-
-  );
+  )
 }
 
 export default App;
