@@ -7,7 +7,7 @@ const initialFormValues = {
 }
 
 function Form(props) {
-    const { teamMembers, setTeamMembers, memberToEdit } = props;
+    const { teamMembers, setTeamMembers, memberToEdit, editMember } = props;
 
     const [formValues, setFormValues] = useState(initialFormValues);
 
@@ -23,7 +23,7 @@ function Form(props) {
         updateForm(name, value);
     }
 
-    const submitForm = () => {
+    const submitNewMember = () => {
         const newTeamMember = {
             name: formValues.name.trim(),
             email: formValues.email.trim(),
@@ -35,7 +35,11 @@ function Form(props) {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        submitForm();
+        if (memberToEdit) {
+            editMember(formValues);
+        } else {
+            submitNewMember();
+        }
     }
 
     useEffect(() => {
